@@ -517,7 +517,7 @@
     <!--end navigation-->
     <!--start page wrapper -->
     <div class="page-wrapper">
-        <div class="page-content">
+        <div class="page-content" id="app">
             @yield('content')
         </div>
     </div>
@@ -617,6 +617,7 @@
 <script src="/assets/js/index.js"></script>
 <!--app JS-->
 <script src="/assets/js/app.js"></script>
+<script src="/js/app.js"></script>
 <script>
     new PerfectScrollbar('.product-list');
     new PerfectScrollbar('.customers-list');

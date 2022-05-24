@@ -2,22 +2,7 @@
 @section('title', 'Главная')
 @section('content')
     <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
-        <div class="col">
-            <div class="card radius-10">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div>
-                            <p class="mb-0 text-secondary">Revenue</p>
-                            <h4 class="my-1">$4805</h4>
-                            <p class="mb-0 font-13 text-success"><i class='bx bxs-up-arrow align-middle'></i>$34 Since last week</p>
-                        </div>
-                        <div class="widgets-icons bg-light-success text-success ms-auto"><i class='bx bxs-wallet'></i>
-                        </div>
-                    </div>
-                    <div id="chart1"></div>
-                </div>
-            </div>
-        </div>
+        <ticker></ticker>
         <div class="col">
             <div class="card radius-10">
                 <div class="card-body">
