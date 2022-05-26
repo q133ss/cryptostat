@@ -5287,24 +5287,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ticker",
+  //if priceChange содержит - то минус, если нет, то плюс
   data: function data() {
-    resp: [];
+    return {
+      currency: []
+    };
   },
   mounted: function mounted() {
     this.getTicker();
   },
   methods: {
     getTicker: function getTicker() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('http://www.binance.com/api/v3/ticker/24hr', {
-        symbol: 'BNBUSDT'
-      }).then(function (res) {
-        this.resp = res.data;
-      })["catch"](function (error) {
-        console.log(error);
-      }); //alert(this.resp);
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/ticker/').then(function (res) {
+        _this.currency = res.data;
+      });
+      console.log(this.currency);
     }
   } //https://www.binance.com/api/v3/ticker/24hr
   //symbol=BNBUSDT
@@ -27920,44 +27924,53 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "col" }, [
+    _c(
+      "div",
+      { staticClass: "card radius-10" },
+      _vm._l(_vm.currency, function (el) {
+        return _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "d-flex align-items-center" }, [
+            _c("div", [
+              _c("p", { staticClass: "mb-0 text-secondary" }, [
+                _vm._v(_vm._s(el.symbol)),
+              ]),
+              _vm._v(" "),
+              _c("h4", { staticClass: "my-1" }, [
+                _vm._v("$" + _vm._s(el.lastPrice)),
+              ]),
+              _vm._v(" "),
+              el.priceChangePercent.includes("-")
+                ? _c("p", { staticClass: "mb-0 font-13 text-danger" }, [
+                    _c("i", { staticClass: "bx bxs-down-arrow align-middle" }),
+                    _vm._v(_vm._s(el.priceChangePercent) + "%"),
+                  ])
+                : _c("p", { staticClass: "mb-0 font-13 text-success" }, [
+                    _c("i", { staticClass: "bx bxs-up-arrow align-middle" }),
+                    _vm._v(_vm._s(el.priceChangePercent) + "%"),
+                  ]),
+            ]),
+            _vm._v(" "),
+            _vm._m(0, true),
+          ]),
+          _vm._v(" "),
+          _c("div", { attrs: { id: "chart1" } }),
+        ])
+      }),
+      0
+    ),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col" }, [
-      _c("div", { staticClass: "card radius-10" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "d-flex align-items-center" }, [
-            _c("div", [
-              _c("p", { staticClass: "mb-0 text-secondary" }, [
-                _vm._v("Revenue"),
-              ]),
-              _vm._v(" "),
-              _c("h4", { staticClass: "my-1" }, [_vm._v("$4805")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "mb-0 font-13 text-success" }, [
-                _c("i", { staticClass: "bx bxs-up-arrow align-middle" }),
-                _vm._v("$34 Since last week"),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "widgets-icons bg-light-success text-success ms-auto",
-              },
-              [_c("i", { staticClass: "bx bxs-wallet" })]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("div", { attrs: { id: "chart1" } }),
-        ]),
-      ]),
-    ])
+    return _c(
+      "div",
+      { staticClass: "widgets-icons bg-light-success text-success ms-auto" },
+      [_c("i", { staticClass: "bx bxs-wallet" })]
+    )
   },
 ]
 render._withStripped = true
