@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/ticker',[App\Http\Controllers\Api\v1\TickerController::class, 'index']);
+Route::get('/ticker/{currency1}/{currency2}',[App\Http\Controllers\Api\v1\TickerController::class, 'index']);
