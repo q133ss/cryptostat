@@ -21,10 +21,15 @@ class ProfileController extends Controller
         //Terra
 
         $binance->setApi(Auth()->user()->api_key, Auth()->user()->api_secret);
-        $accountInfo = $binance->getAccountInfo();
-        $balanceInfo = $binance->getUserCoinsInfo(); //All coins
-        $balances = collect($balanceInfo)->where('free','!=', '0.00000000')->all();
-        dd($balances);
+        //$accountInfo = $binance->getAccountInfo();
+        //$balanceInfo = $binance->getUserCoinsInfo(); //All coins
+
+        //$trades = $binance->getTrades('BNBRUB'); //Можно найти все сделки с ценой и кол-вом
+        //$dep = $binance->getDepositHistory();
+        $orders = $binance->getAllOrders('BNBRUB'); //Цена, время кол-во заказа
+
+        //$balances = collect($balanceInfo)->where('free','!=', '0.00000000')->all();
+        dd($orders);
 
 
         return view('dashboard.profile', compact('balances'));
